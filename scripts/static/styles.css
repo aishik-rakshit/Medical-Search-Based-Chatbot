@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    width: 600px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-window {
+    height: 500px;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-message img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-bubble {
+    padding: 10px;
+    border-radius: 20px;
+    max-width: 80%;
+    display: inline-block;
+    word-wrap: break-word;
+    opacity: 0;
+    animation: appear 0.3s forwards;
+}
+
+.user-message .chat-bubble {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.assistant-message .chat-bubble {
+    background-color: #f1f1f1;
+    color: black;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.thinking-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    margin: 10px auto;
+}
+
+.thinking-bubble .dots {
+    display: flex;
+    justify-content: space-between;
+    width: 24px;
+}
+
+.thinking-bubble .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #333;
+    border-radius: 50%;
+    animation: dot-blink 1.5s infinite;
+}
+
+.thinking-bubble .dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.thinking-bubble .dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes dot-blink {
+    0%, 20%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
