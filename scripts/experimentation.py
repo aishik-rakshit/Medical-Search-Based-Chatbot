@@ -32,8 +32,8 @@ def has_context_to_answer(query, conversation_history, model_name):
 
 def generate_response(query, conversation_history, context_message=None):
     logging.info("Generating response...")
-    model_name = "llama3"  # Replace with the actual model name
-
+    model_name = "llama3" 
+    
     # Add the context message if provided
     if context_message:
         conversation_history = [{"role": "system", "content": context_message}] + conversation_history
