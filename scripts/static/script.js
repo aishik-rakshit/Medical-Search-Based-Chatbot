@@ -26,7 +26,7 @@ function sendMessage() {
     const chatWindow = document.getElementById('chat-window');
     const userMessageDiv = document.createElement('div');
     userMessageDiv.className = 'chat-message user-message';
-    userMessageDiv.innerHTML = `<img src="static/user.png" alt="User"><div class="chat-bubble">${userMessage}</div>`;
+    userMessageDiv.innerHTML = `<div class="chat-bubble">${userMessage}</div><img src="static/user.png" alt="User">`;
     chatWindow.appendChild(userMessageDiv);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -84,18 +84,15 @@ function sendMessage() {
 }
 
 function formatMessage(message) {
-    // Convert numbered points to HTML list items
-    const numberedPointsRegex = /\d+\.\s/g;
-    message = message.replace(numberedPointsRegex, match => `</li><li>${match}`);
+    // Remove numbered points and convert to paragraphs
+    const pointsRegex = /\d+\.\s+/g;
+    message = message.replace(pointsRegex, '');
 
     // Convert new lines to HTML paragraphs
     message = message.replace(/\n/g, '</p><p>');
 
-    // Wrap the content in <p> and <li> tags appropriately
+    // Wrap the content in <p> tags appropriately
     message = `<p>${message}</p>`;
-    message = message.replace('</li><li>', '<li>');
-    message = message.replace('<p><li>', '<ol><li>');
-    message = message.replace('</li></p>', '</li></ol>');
 
     return message;
 }
@@ -112,7 +109,6 @@ function getConversationHistory() {
 
     return conversationHistory;
 }
-
 
 // Add event listener for Enter key
 document.getElementById('user-input').addEventListener('keydown', function(event) {
